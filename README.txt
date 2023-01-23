@@ -1,10 +1,10 @@
 # CS-359-Project
 ---------------
-#Team Members in collaboration:
-#German Ramiriez
+# Team Members in collaboration:
+# German Ramiriez
 Email: 
-#Justus Contreas
+# Justus Contreas
 Email: 
-#Drey Smith
+# Drey Smith
 Email: Drey.Smith@ENMU.edu
 ----------------

@@ -6,5 +6,5 @@ Email:
 #Justus Contreas
 Email: 
 #Drey Smith
-Email: 
+Email: Drey.Smith@ENMU.edu
 ----------------

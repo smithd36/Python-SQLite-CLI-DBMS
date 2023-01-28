@@ -2,7 +2,7 @@
 ---------------
 # Team Members in collaboration:
 # German Ramiriez
-Email: 
+Email: german.ramirez@enmu.edu
 # Justus Contreas
 Email: 
 # Drey Smith

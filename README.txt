@@ -2,6 +2,7 @@
 ---------------
 # Team Members in collaboration:
 # German Ramiriez
+Username: ramirezgerman
 Email: german.ramirez@enmu.edu
 # Justus Contreas
 Email: 

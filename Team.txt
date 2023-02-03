@@ -6,8 +6,8 @@ Username: ramirezgerman
 Email: german.ramirez@enmu.edu
 
 # Justus Contreas
-Username:
-Email: 
+Username:solarbeam122
+Email: justus.contreras@enmu.edu
 
 # Drey Smith
 Username: smithd36

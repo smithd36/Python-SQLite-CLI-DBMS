@@ -2,7 +2,7 @@ PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
 CREATE TABLE Video (videoCode integer primary key, videoLength integer);
 CREATE TABLE Model (modelNo char(10) primary key, width numeric(6,2), height numeric (6,2), weight numeric (6,2), depth numeric (6,2), screenSize numeric(6,2));
-CREATE TABLE Site (siteCode integer primary key, type varchar (16), address varchar(100), modelNo char(10));
+CREATE TABLE Site (siteCode integer primary key, type varchar (16), address varchar(100), phone varchar(16));
 CREATE TABLE DigitalDisplay (serialNo char(10) primary key, schedulerSystem char(10), modelNo char(10), Foreign key (modelNo) references Model (modelNo));
 CREATE TABLE Client (clientId integer primary key, name varchar(40), phone varchar(16), address varchar(100));
 CREATE TABLE TechnicalSupport (empId integer primary key, name varchar(40), gender char(1));

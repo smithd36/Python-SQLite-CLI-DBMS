@@ -185,6 +185,45 @@ def display_columns():
             print(f"{row[0]}\t{row[1]}")
 
 
+def update_display(displays):
+    # Display all available digital displays
+    print("Available digital displays:")
+    for index, display in enumerate(displays):
+        print(f"{index + 1}. {display}")
+    
+    # Prompt user to choose a display to update
+    while True:
+        try:
+            choice = int(input("Enter the number of the display you want to update: "))
+            if choice < 1 or choice > len(displays):
+                raise ValueError()
+            break
+        except ValueError:
+            print("Invalid choice. Please enter a number between 1 and", len(displays))
+    
+    # Prompt user to enter new information for the display
+    print("Current information for display", choice, ":")
+    print(displays[choice - 1])
+    new_info = input("Enter the new information for this display: ")
+    
+    # Update the display with the new information
+    displays[choice - 1] = new_info
+    
+    # Display all digital displays with updated information
+    print("Updated digital displays:")
+    for index, display in enumerate(displays):
+        print(f"{index + 1}. {display}")
+
+
+def sign_out():
+    """Function to sign out of the database"""
+    conn.close()
+    print("Signed out of the database")
+
+    # Close the connection
+    print("Disconnecting from: ", LOGIN, "\n")
+    conn.close()
+
 if __name__ == "__main__":
     """Main function to run the program"""
     print("Welcome to ABC Media Database\n")
@@ -220,8 +259,12 @@ if __name__ == "__main__":
             continue
         # if choice == 3:
         # if choice == 4:
-        # if choice == 5:
-        # if choice == 6:
+        if choice == 5: #update a display
+            update_display(digital_displays)
+            continue
+        if choice == 6:
+            sign_out()
+            continue
         # WILL BE FILLED UPDATED AS FUNCTIONS ARE DEVELOPED
 
 

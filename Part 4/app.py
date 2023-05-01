@@ -324,8 +324,12 @@ if __name__ == "__main__":
         if choice == "2":
             display_columns()
             continue
-        # if choice == 3:
-        # if choice == 4:
+        if choice == 3:
+            insert_element()
+            continue
+        if choice == 4:
+            delete_element()
+            continue
         if choice == 5: #update a display
             update_display(digital_displays)
             continue

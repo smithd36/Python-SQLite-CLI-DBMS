@@ -183,6 +183,73 @@ def display_columns():
         # Iterate over each row and print the values
         for row in c.fetchall():
             print(f"{row[0]}\t{row[1]}")
+           
+def insert_element():
+    """Function to insert a new element into the database"""
+    table = input("Enter the name of the table to insert into: ")
+    columns = []
+    values = []
+    # Get input for each column in the table
+    for column in c.execute(f"PRAGMA table_info({table})"):
+        columns.append(column[1])
+        value = input(f"Enter {column[1]}: ")
+        values.append(value)
+    # Use INSERT INTO statement to add new element to the database
+    c.execute(f"INSERT INTO {table} ({','.join(columns)}) VALUES ({','.join(['?']*len(values))})", values)
+    conn.commit()
+    print(f"New element added to {table} table.")
+
+    #Display the column in the table user chosen to insert
+    c.execute(f"SELECT * FROM {table}")
+    for row in c.fetchall():
+        print(f"{row[0]}\t{row[1]}")
+        
+        
+def delete_element():
+    table_name = input("Enter the name of the table to delete from: ")
+    # Tuples containing the column name and type, like a dictionary
+    column_aliases = {"VidCode": "videoCode", "VidLength": "videoLength", "modelNo": "ModelNo",
+                      "screenSize": "ScreenSize", "siteCode": "siteCode", "type": "Type",
+                      "schedulerSystem": "SchedulerSystem", "clientId": "ClientID", "packageId": "PackageID",
+                      "empId": "EmpID", "day": "Day", "hours": "Hours", "serialNo": "SerialNo",
+                      "commissionRate": "CommissionRate", "startDate": "StartDate", "lastDate": "LastDate",
+                      "frequency": "Frequency", "name": "Name", "gender": "Gender", "address": "Address",
+                      "phone": "Phone"} # Dictionary of column aliases
+
+    # Get column name and value for searching
+    search_strings = []
+    # Loop until user enters 'done'
+    while True:
+        # Get column name and value for searching
+        column_name = input("Enter the name of the column to search by (or 'done' if finished): ")
+        if column_name == 'done': # Exit loop if user enters 'done'
+            break
+        column_alias = column_aliases.get(column_name, column_name) # Get column alias if it exists
+        search_string = input(f"Enter a value for column '{column_name}': ") # Get search string
+        search_strings.append((column_alias, search_string)) # Add column name and search string to list
+
+    # Generate query and search strings
+    query = f"DELETE FROM {table_name} WHERE " # Start query
+    for column_name, search_string in search_strings: # Loop through search strings
+        query += f"{column_name} LIKE ? AND " # Add search string to query
+        # Add search string to list of search strings
+    query = query[:-5]  # Remove trailing " AND " 
+
+    # Confirm deletion with user
+    print(f"You are about to delete the following record(s) from {table_name}:")
+    c.execute(f"SELECT * FROM {table_name} WHERE {search_strings[0][0]} LIKE ?", ('%' + search_strings[0][1] + '%',)) # Execute query
+    rows = c.fetchall() # Get rows
+    for row in rows: # Print rows
+        print(row) # Print row
+    confirmation = input("Are you sure you want to proceed with the deletion? (y/n) ") # Confirm deletion
+    if confirmation.lower() == 'y': # If user confirms deletion
+        # Execute query
+        c.execute(query, [('%' + search_string + '%') for _, search_string in search_strings]) #=
+        conn.commit() # Commit changes
+        print(f"{c.rowcount} record(s) deleted from {table_name}.") # Print number of rows deleted
+    else:
+        print("Deletion cancelled.") # Print message if user cancels deletion
+
 
 
 def update_display(displays):
